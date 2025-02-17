@@ -1,0 +1,368 @@
+
+package aenu.aps3e;
+
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.ListActivity;
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.os.Bundle;
+import android.os.Environment;
+import android.preference.PreferenceManager;
+import android.text.format.DateFormat;
+import android.view.KeyEvent;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.io.File;
+import java.io.FileFilter;
+import java.text.Collator;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import android.os.Handler;
+import java.io.FileOutputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.io.IOException;
+import android.app.Activity;
+import android.widget.AdapterView;
+import android.widget.Adapter;
+import android.Manifest;
+import java.util.*;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import aenu.proptest.*;
+
+public class MainActivity extends Activity{
+	
+	{
+		System.loadLibrary("e");
+	}
+	
+	private File currentDir=Environment.getExternalStorageDirectory();
+
+    private SharedPreferences preferences;
+    private final View.OnClickListener goto_parent_dir_l=new View.OnClickListener(){
+        @Override
+        public void onClick(View p1){
+            File parentFile=currentDir.getParentFile();
+            if(parentFile!=null)
+                changeDir(parentFile);
+        }
+    };
+	private final AdapterView.OnItemClickListener item_click_l=new AdapterView.OnItemClickListener(){
+		@Override
+		public void onItemClick(AdapterView<?> l, View v, int position,long id)
+		{
+			File f=((FileAdapter)l.getAdapter()).getFile(position);
+			if(f.isFile()){
+				
+				if(f.getName().equals("PS3UPDAT.PUP")){
+					InstallFrimware.start_install_firmware(MainActivity.this,f.getAbsolutePath());
+					return;
+				}
+				
+				if(!f.getName().endsWith(".iso"))
+					return;
+					
+				if(!InstallFrimware.done_f.exists()){
+					Toast.makeText(MainActivity.this,"固件未安装",2000).show();
+					return;
+				}
+					
+				Emulator.MetaInfo meta_info=Emulator.get.meta_info_from(f.getAbsolutePath());
+				
+				if(meta_info.icon!=null&&!TMC.is_installed(meta_info.id)){
+					TMC._install_iso(MainActivity.this,f.getAbsolutePath(),meta_info.id);
+					return;
+				}
+				
+				if(meta_info.icon!=null){
+					//Intent intent = new Intent(MainActivity.this,EmulatorActivity.class);
+					Intent intent = new Intent("aenu.intent.action.APS3E");
+					intent.setPackage(getPackageName());
+					
+					meta_info.icon=null;
+					meta_info.name=null;
+					intent.putExtra("meta_info",meta_info);
+					startActivity(intent);
+				}
+			}        
+			else
+				changeDir(f);
+		}
+	};
+    
+    private boolean request_perms(){
+        final String[] perms=new String[]{
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
+        };
+		ArrayList<String> req_perms=new ArrayList<>();
+        
+        for(String perm:perms)
+            if(checkSelfPermission(perm)!= PackageManager.PERMISSION_GRANTED)
+                req_perms.add(perm);
+            
+        String[] req_perms_arr=new String[req_perms.size()];
+        req_perms.toArray(req_perms_arr);
+		if(req_perms.size()!=0){
+            requestPermissions((String[])req_perms_arr,777);
+			return true;
+		}
+		return false;
+    }
+	
+	
+
+    @Override
+    public void onCreate(Bundle savedInstanceState){
+
+        super.onCreate(savedInstanceState);
+		
+		getActionBar().setTitle("选择游戏");
+		android.util.Log.e("aps3e_java","main");
+		
+        preferences=PreferenceManager.getDefaultSharedPreferences(this);
+        
+        setContentView(R.layout.activity_list);
+		
+		findViewById(R.id.goto_parent_dir).setOnClickListener(goto_parent_dir_l);
+		((ListView)findViewById(R.id.list_view)).setOnItemClickListener(item_click_l);
+		currentDir=new File(preferences.getString("lastDir",currentDir.getAbsolutePath()));
+		
+		if(!request_perms()){
+			initialize();
+			changeDir(currentDir);
+		}
+    }
+	
+	@Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.main,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        super.onOptionsItemSelected(item);
+        switch(item.getItemId()){
+            
+            case R.id.menu_about:
+                startActivity(new Intent(this,HelloJni.class));
+                break;       
+			case R.id.menu_update_log:
+				startActivity(new Intent(this,UpdateLogActivity.class));
+				break;
+        }
+        return true;
+    }
+	
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults)
+    {
+        // TODO: Implement this method
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+		if (requestCode == 777) {
+			for(int result:grantResults){
+				if(result != RESULT_OK){
+					request_perms();
+					return;
+				}
+			}
+			initialize();
+			changeDir(currentDir);
+		}
+    }
+    
+
+    @Override
+    public boolean onKeyDown(int keyCode,KeyEvent event){
+        if(keyCode==KeyEvent.KEYCODE_BACK){
+            finish();
+            return true;
+        }
+        return super.onKeyDown(keyCode,event);
+    }
+
+    @Override
+    public void finish(){
+        super.finish();
+        preferences.edit()
+            .putString("lastDir",currentDir.getAbsolutePath())
+            .commit();
+    }
+
+    private void initialize(){
+	//private final File APP_DIR=new File(Environment.getExternalStorageDirectory(),"aps3e");
+	
+		String[] sub_paths={
+			"aps3e",
+			"aps3e/config",
+			"aps3e/config/dev_flash",
+			"aps3e/config/dev_flash2",
+			"aps3e/config/dev_flash3",
+			"aps3e/config/dev_bdvd",
+			"aps3e/config/dev_hdd0",
+			"aps3e/config/dev_hdd1",
+		};
+		
+		for(String sp:sub_paths){
+			File dir=new File(Environment.getExternalStorageDirectory(),sp);
+			if(!dir.exists()){
+				dir.mkdirs();
+			}
+			
+		}
+        /*if(!APP_DIR.exists())
+            APP_DIR.mkdirs();*/
+    }
+
+    private void changeDir(File f){
+        if(f.canRead())currentDir=f;
+        ((TextView)findViewById(R.id.list_path_show))
+          .setText(currentDir.getAbsolutePath());
+       
+        ((ListView)findViewById(R.id.list_view))
+          .setAdapter(new FileAdapter(this,currentDir));
+        
+    }
+
+    private static class FileAdapter extends BaseAdapter {
+
+        private static final FileFilter filter_=new FileFilter(){
+            private final String suffix[]={
+                ".iso",
+            };
+            @Override
+            public boolean accept(File p1){
+                if(p1.isDirectory())
+                    return true;
+                final String name=p1.getName();
+				if(name.equals("PS3UPDAT.PUP"))
+					return true;
+                for(String s:suffix)
+                    if(name.endsWith(s))
+                        return true;
+                return false;
+            }         
+        };
+
+        private static final Comparator<File> comparator_ = new Comparator<File>(){
+            final Collator collator =Collator.getInstance(); 
+            @Override
+            public int compare(File p1,File p2){
+                if(p1.isDirectory()&&p2.isFile())
+                    return -1;
+                else if(p1.isFile()&&p2.isDirectory())
+                    return 1;
+                return collator.compare(p1.getName(),p2.getName());
+            }
+        };
+
+        private File[] fileList_;
+        private Context context_; 
+
+        private FileAdapter(Context context,File file){
+            context_=context;
+
+            if(file!=null&&file.isDirectory())
+                fileList_=getFileList(file);
+            else
+                fileList_=getFileList(Environment.getExternalStorageDirectory());
+        }
+
+        private File[] getFileList(File f){
+            File[] files=f.listFiles(filter_);     
+            
+            Arrays.sort(files,comparator_);
+            
+            return files;
+        }
+
+        public File getFile(int pos){
+            return fileList_[pos];
+        }
+
+        @Override
+        public int getCount(){
+            return fileList_.length;
+        }
+
+        @Override
+        public Object getItem(int p1){
+            return fileList_[p1];
+        }
+
+        @Override
+        public long getItemId(int p1){
+            return p1;
+        }
+
+        private LayoutInflater getLayoutInflater(){
+            return (LayoutInflater)context_.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        }
+
+        @Override
+        public View getView(int pos,View curView,ViewGroup p3){
+            
+            File f=fileList_[pos];
+            
+            if(curView==null){
+                curView=getLayoutInflater().inflate(R.layout.dir_entry,null);
+            }
+
+            
+            ImageView icon=(ImageView)curView.findViewById(R.id.file_icon);
+
+            icon.setImageResource(
+                f.isDirectory()
+                ?R.drawable.ic_folder
+                :R.drawable.unknown);
+
+            
+            if(f.isFile()){
+				
+				TextView name=(TextView)curView.findViewById(R.id.file_tag);
+				
+				if(f.getName().equals("PS3UPDAT.PUP")){
+					name.setText("PS3固件");
+					return curView;
+				}
+                
+                Emulator.MetaInfo mi=Emulator.get.meta_info_from(f.getAbsolutePath());
+                  name.setText(String.format("%s (%s)",mi.name,mi.id));
+                
+                if(mi.icon!=null){
+                    icon.setImageBitmap(BitmapFactory.decodeByteArray(mi.icon,0,mi.icon.length));
+                }
+                
+            }
+            else{
+					TextView name=(TextView)curView.findViewById(R.id.file_tag);
+                name.setText(f.getName());
+                
+            }
+
+            return curView;
+        } 
+    }//!FileAdapter
+}

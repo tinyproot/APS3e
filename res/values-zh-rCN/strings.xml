@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">aps3e</string>
+	<string name="installing_firmware">安装固件中...</string>
+	<string name="refresh_list">刷新列表</string>
+	<string name="select_game">选择游戏</string>
+	<string name="install_firmware">安装固件</string>
+	<string name="install_game">安装 ISO/PKG</string>
+	<string name="installing_game">安装游戏中...</string>
+	<string name="about">关于</string>
+	<string name="update_log">更新日志</string>
+	<string name="firmware_not_install">固件未安装</string>
+	<string name="request_title_INSTALL_FIRMWARE">选择固件(PS3UPDAT.PUP)</string>
+	<string name="request_title_INSTALL_GAME">选择一个PS3 ISO或PKG文件</string>
+	<string name="empty_game_list">游戏列表为空</string>
+	
+</resources>

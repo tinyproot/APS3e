@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:background="@android:color/transparent"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+
+	<Button
+		android:id="@+id/pad_no_use_lb"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="空"
+		android:enabled="false"
+		android:layout_alignParentBottom="true"
+		android:layout_alignParentLeft="true"
+		android:visibility="invisible"/>
+
+	<Button
+		android:id="@+id/pad_down"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="下"
+		android:layout_alignParentBottom="true"
+		android:layout_toRightOf="@id/pad_no_use_lb"/>
+
+	<Button
+		android:id="@+id/pad_left"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="左"
+		android:layout_above="@id/pad_no_use_lb"
+		android:layout_alignParentLeft="true"
+		android:layout_marginBottom="2dp"/>
+
+	<Button
+		android:id="@+id/pad_right"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="右"
+		android:layout_above="@id/pad_down"
+		android:layout_toRightOf="@id/pad_down"
+		android:layout_marginLeft="2dp"/>
+
+	<Button
+		android:id="@+id/pad_up"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="上"
+		android:layout_above="@id/pad_left"
+		android:layout_toRightOf="@id/pad_no_use_lb"
+		android:layout_marginBottom="2dp"/>
+
+	<Button
+		android:id="@+id/pad_no_use_rb"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="空"
+		android:enabled="false"
+		android:layout_alignParentBottom="true"
+		android:layout_alignParentRight="true"
+		android:visibility="invisible"/>
+
+	<Button
+		android:id="@+id/button_x"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="X"
+		android:layout_alignParentBottom="true"
+		android:layout_toLeftOf="@id/pad_no_use_rb"/>
+
+	<Button
+		android:id="@+id/button_o"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="O"
+		android:layout_above="@id/button_x"
+		android:layout_toRightOf="@id/button_x"
+		android:layout_alignParentRight="true"
+		android:layout_marginBottom="2dp"/>
+
+	<Button
+		android:id="@+id/button_square"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="口"
+		android:layout_above="@id/button_x"
+		android:layout_toLeftOf="@id/button_x"
+		android:layout_marginBottom="2dp"/>
+
+	<Button
+		android:id="@+id/button_triangle"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="△"
+		android:layout_above="@id/button_o"
+		android:layout_toLeftOf="@id/pad_no_use_rb"
+		android:layout_marginBottom="2dp"/>
+
+	<Button
+		android:id="@+id/button_start"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="开始"
+		android:layout_alignParentBottom="true"
+		android:layout_centerHorizontal="true"/>
+
+	<Button
+		android:id="@+id/button_select"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="选择"
+		android:layout_alignParentBottom="true"
+		android:layout_toRightOf="@id/button_start"
+		android:layout_marginLeft="2dp"/>
+
+</RelativeLayout>
+

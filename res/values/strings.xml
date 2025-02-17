@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">aps3e</string>
+	<string name="installing_firmware">Installing Firmware...</string>
+	<string name="refresh_list">Refresh List</string>
+	<string name="select_game">Select Game</string>
+	<string name="install_firmware">Install Firmware</string>
+	<string name="install_game">Install ISO/PKG</string>
+	<string name="installing_game">Installing Game...</string>
+	<string name="about">About</string>
+	<string name="update_log">Update Log</string>
+	<string name="firmware_not_install">firmware not install</string>
+	<string name="request_title_INSTALL_FIRMWARE">Select Firmware(PS3UPDAT.PUP)</string>
+	<string name="request_title_INSTALL_GAME">Select a PS3 ISO or PKG</string>
+	<string name="empty_game_list">The game list is empty</string>
+	
+</resources>

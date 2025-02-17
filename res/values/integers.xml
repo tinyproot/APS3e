@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--integer name="BUTTON_CROSS_X">905</integer-->
+	<integer name="BUTTON_CROSS_X">862</integer>
+    <integer name="BUTTON_CROSS_Y">485</integer>
+    <integer name="BUTTON_CIRCLE_X">927</integer>
+    <integer name="BUTTON_CIRCLE_Y">360</integer>
+    <integer name="BUTTON_SQUARE_X">797</integer>
+    <integer name="BUTTON_SQUARE_Y">360</integer>
+    <integer name="BUTTON_TRIANGLE_X">862</integer>
+    <integer name="BUTTON_TRIANGLE_Y">235</integer>
+    <integer name="BUTTON_SELECT_X">170</integer>
+    <integer name="BUTTON_SELECT_Y">840</integer>
+    <integer name="BUTTON_START_X">770</integer>
+    <integer name="BUTTON_START_Y">840</integer>
+    <integer name="DPAD_UP_X">15</integer>
+    <integer name="DPAD_UP_Y">245</integer>
+    <integer name="STICK_LEFT_X">23</integer>
+    <integer name="STICK_LEFT_Y">622</integer>
+    <integer name="STICK_RIGHT_X">870</integer>
+    <integer name="STICK_RIGHT_Y">670</integer>
+    <integer name="TRIGGER_L_X">30</integer>
+    <integer name="TRIGGER_L_Y">-45</integer>
+    <integer name="TRIGGER_R_X">900</integer>
+    <integer name="TRIGGER_R_Y">-45</integer>
+    <integer name="TRIGGER_L2_X">190</integer>
+    <integer name="TRIGGER_L2_Y">-45</integer>
+    <integer name="TRIGGER_R2_X">740</integer>
+    <integer name="TRIGGER_R2_Y">-45</integer>
+	<integer name="TRIGGER_L3_X">350</integer>
+    <integer name="TRIGGER_L3_Y">-45</integer>
+    <integer name="TRIGGER_R3_X">580</integer>
+    <integer name="TRIGGER_R3_Y">-45</integer>
+</resources>

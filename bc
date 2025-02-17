@@ -1,0 +1,10 @@
+
+rm -r o&&mkdir o &&\
+aapt2 compile -o o/res.zip --dir res&&\
+aapt2 link -o o/out.apk --manifest AndroidManifest.xml -I $HOME/ap/android/android24.jar o/res.zip --java src&&\
+ecj -bootclasspath $HOME/ap/android/android24.jar -d $HOME/ap/aps3e/b $HOME/ap/aps3e/src &&\
+cd $HOME/ap/aps3e/b&&zip -r ../ab.jar *&&cd ..&&\
+dx --dex --output=classes.dex ab.jar &&\
+zip -u o/out.apk classes.dex lib/arm64-v8a/*.so assets/Icons/ui/* &&\
+apksigner sign --cert testkey.x509.pem --key testkey.pk8 o/out.apk
+

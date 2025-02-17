@@ -1,0 +1,17 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_refresh_list"
+        android:title="@string/refresh_list"/>
+	<item
+        android:id="@+id/menu_install_firmware"
+        android:title="@string/install_firmware"/>
+	<item
+        android:id="@+id/menu_install_game"
+        android:title="@string/install_game"/>
+	<item
+        android:id="@+id/menu_about"
+        android:title="@string/about"/>
+	<item
+        android:id="@+id/menu_update_log"
+        android:title="@string/update_log"/>
+</menu>
