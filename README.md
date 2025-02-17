@@ -9,7 +9,7 @@ A free PlayStation 3 emulator for Android devices,base on RPCS3
 - 📱 **Optimized for mobile** - Designed specifically for Android  
 
 ## Download & Installation  
-▶️ **Only official source**: [GitHub Releases Page](https://github.com/aenu/releases/tag/0.4-250204)  
+▶️ **Only official source**: [GitHub Releases Page](https://github.com/aenu/aps3e/releases)  
 
 ## Support the Project  
 ❤️ Help sustain development through donations:  
