@@ -26,5 +26,5 @@ Full source code will be released when total donations reach **$5,000 USD**.
 This emulator is intended for educational purposes only. Users must comply with all applicable laws regarding game ROM ownership and usage. The developer assumes no responsibility for misuse.
 
 ## Contact  
-📧 GitHub Issues (English/Chinese): https://github.com/aps3e/aps3e/issues  
+📧 GitHub Issues (English/Chinese): https://github.com/aenu/aps3e/issues  
 
