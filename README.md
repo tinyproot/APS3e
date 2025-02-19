@@ -2,7 +2,7 @@
 # APS3e - Android PS3 Emulator  
 **Free | Ad-free | Open Source (Partial)**
 
-A free PlayStation 3 emulator for Android devices,base on RPCS3
+A free PlayStation 3 emulator for Android devices,base on [RPCS3](https://github.com/RPCS3/rpcs3) ,[Vita3K](https://github.com/Vita3K/Vita3K)
 
 ## Key Features  
 - 🚫 **No ads** - Completely free of advertisements    
