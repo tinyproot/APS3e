@@ -1,3 +1,6 @@
+<p align="center">
+	<img src="aps3e.tiny" width="376" height="192" alt="aps3e tiny" />  
+</p>
 
 # APS3e - Android PS3 Emulator  
 **Free | Ad-free | Open Source (Partial)**
