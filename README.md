@@ -3,7 +3,7 @@
 </p>
 
 # APS3e - Android PS3 Emulator  
-**Free | Ad-free | Open Source (Partial)**
+**Free | Ad-free**
 
 A free PlayStation 3 emulator for Android devices,base on [RPCS3](https://github.com/RPCS3/rpcs3) ,[Vita3K](https://github.com/Vita3K/Vita3K)
 
@@ -12,14 +12,10 @@ A free PlayStation 3 emulator for Android devices,base on [RPCS3](https://github
 - 📱 **Optimized for mobile** - Designed specifically for Android  
 
 ## Download & Installation  
-▶️ **Only official source**: [GitHub Releases Page](https://github.com/aenu/aps3e/releases)  
+▶️ **Link**: [GitHub Releases Page](https://github.com/tinyproot/aps3e/releases)  
 
 ## Support the Project  
-❤️ Help sustain development through donations:  
-[![Donate via PayPal](https://img.shields.io/badge/Donate-PayPal-blue.svg)](https://paypal.me/iaenu)  
-
-💰 **Source Code Milestone**:  
-Full source code will be released when total donations reach **$2,000 USD**.  
+❤️ Help sustain development through donations: [Donate or Buy me a coffee](https://teer.id/aps3e)    
 
 ## Security Notice  
 ❗ This project has **no alternative download channels**.  
@@ -29,5 +25,4 @@ Full source code will be released when total donations reach **$2,000 USD**.
 This emulator is intended for educational purposes only. Users must comply with all applicable laws regarding game ROM ownership and usage. The developer assumes no responsibility for misuse.
 
 ## Contact  
-📧 GitHub Issues (English/Chinese): https://github.com/aenu/aps3e/issues  
-
+📧 aps3e@proton.me
