@@ -1,46 +1,66 @@
+<!--安卓高版本创建socket需要-->
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-      package="aenu.aps3e"
-      android:versionCode="4"
-	  android:versionName="0.4">
-    <uses-sdk android:minSdkVersion="24" />
-	<uses-sdk android:targetSdkVersion="24" />
-	
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-		
-	<!--安卓高版本创建socket需要-->
-	<uses-permission android:name="android.permission.INTERNET" />
-		
-    <application android:label="@string/app_name"
+    android:versionCode="8"
+    android:versionName="0.8"
+    package=".aps3e">
+    <uses-sdk
+        android:minSdkVersion="24"/>
+    <uses-sdk
+        android:targetSdkVersion="24"/>
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission
+        android:name="android.permission.INTERNET"/>
+    <application
+        android:label="@7F060001"
+        android:icon="@7F010000"
         android:name=".Application"
         android:debuggable="false">
-        <activity android:name=".MainActivity"
-			android:label="@string/app_name">
+        <activity
+            android:label="@7F060001"
+            android:name=".MainActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action
+                    android:name="android.intent.action.MAIN"/>
+                <category
+                    android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-		<activity android:name="aenu.proptest.HelloJni"
-			android:label="@string/about">
-        </activity>
-		<activity android:name=".UpdateLogActivity"
-			android:label="@string/update_log"/>
-		<activity android:name=".FileChooser"/>
-		<!--android:screenOrientation="landscape"-->
-		
-		<activity android:name=".EmulatorActivity"
-			android:launchMode="singleTask"
-			android:exported="false"
-			android:screenOrientation="landscape"
-			android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
-			android:process=":emu"
-			>
-			<intent-filter>
-                <action android:name="aenu.intent.action.APS3E" />
-                <category android:name="android.intent.category.DEFAULT" />
+        <activity
+            android:label="@7F060000"
+            android:name="proptest.aps3e"/>
+        <activity
+            android:label="@7F06000A"
+            android:name=".KeyMapActivity"/>
+        <activity
+            android:label="@7F060028"
+            android:name=".UpdateLogActivity"/>
+        <activity
+            android:name=".FileChooser"/>
+        <activity
+            android:label="@7F060005"
+            android:name=".GratitudeActivity"/>
+        <activity
+            android:theme="@01030007"
+            android:name=".VirtualPadEdit"
+            android:launchMode="2"
+            android:screenOrientation="0"/>
+        <activity
+            android:theme="@01030007"
+            android:name=".EmulatorActivity"
+            android:exported="false"
+            android:process=":emu"
+            android:launchMode="2"
+            android:screenOrientation="0">
+            <intent-filter>
+                <action
+                    android:name="aenu.intent.action.APS3E"/>
+                <category
+                    android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
     </application>
-</manifest> 
+</manifest>
