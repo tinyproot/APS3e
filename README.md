@@ -1,5 +1,5 @@
 <p align="center">
-	<img src="aps3e.android" width="376" height="192" alt="aps3e" />  
+	<img src="aps3e" width="192" height="192" alt="aps3e" />  
 </p>
 
 # APS3e - Android PS3 Emulator  
