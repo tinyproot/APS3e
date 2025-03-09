@@ -12,10 +12,10 @@ A free PlayStation 3 emulator for Android devices,base on [RPCS3](https://github
 - 📱 **Optimized for mobile** - Designed specifically for Android  
 
 ## Download & Installation  
-▶️ **Link**: [GitHub Releases Page](https://github.com/tinyproot/aps3e/releases)  
+▶️ Link: [GitHub Releases Page](https://github.com/tinyproot/aps3e/releases)  
 
 ## Support the Project  
-❤️ Help sustain development through donations: **[Buy me a Coffee](https://teer.id/aps3e)**   
+❤️ Help sustain development through donations: [Buy me a Coffee @aps3e](https://teer.id/aps3e)
 
 ## Security Notice  
 ❗ This project has **no alternative download channels**.  
